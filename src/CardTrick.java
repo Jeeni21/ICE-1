@@ -1,3 +1,6 @@
+
+import java.util.Scanner;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -6,6 +9,7 @@
 /**
  *
  * @author jeeni
+ * Date 28th Jan
 import java.util.*;
 
 /**
@@ -20,18 +24,32 @@ public class CardTrick {
     
     public static void main(String[] args) {
         
-       
+        Scanner input = new Scanner(System.in);
+        Card[] hand = new Card[7];
 
-        // insert code to ask the user for Card value and suit, create their card
-        // and search the hand here. 
-        // Hint: You can ask for values 1 to 10, and then
-        //       11 for jack, 12 for queen, etc. (remember arrays are 0-based though)
-        //       1 for Hearts, 2 for Diamonds, etc. (remember arrays are 0-based though)
-        // 
-        // Then loop through the cards in the array to see if there's a match.
+        for (int i = 0; i < hand.length; i++) {
+            Card card = new Card();
+            card.setValue((int) (1+ Math.random()*13));
+            int j;
+            j = (int) (Math.random()*4);
+            card.setSuit(Card.SUITS[j]);
+            hand[i] = card;
+        }
+        System.out.println("Please choose from the following suits \n Hearts \n Clubs \n Spades \n Diamonds");
+        String a = input.next();
         
-        // If the guess is successful, invoke the printInfo() method below.
+        System.out.println("Choose the value from 1 to 13");
+        int b = input.nextInt();
         
+        for(int i =0;i<hand.length;i++){
+            if(b == hand[i].getValue() && a.equalsIgnoreCase(hand[i].getSuit()))
+                printInfo();
+        }
+         System.out.println("The random cards were");
+         for(int i=0;i<hand.length;i++){
+             System.out.println(hand[i].getValue() + " of "+hand[i].getSuit() );
+         }
+                
     }
 
     /**
